@@ -18,9 +18,9 @@
 ## Requirements
 
 - ElasticSearch database installed and running.
-- Installs:
-`pip3 install --upgrade pip`
-`pip3 install elasticsearch`
-`pip3 install pandas`
-`pip3 install --upgrade --no-cache-dir tensorflow`
-`pip3 install --upgrade tensorflow-hub`
+- Installs:  
+`pip3 install --upgrade pip`  
+`pip3 install elasticsearch`  
+`pip3 install pandas`  
+`pip3 install --upgrade --no-cache-dir tensorflow`  
+`pip3 install --upgrade tensorflow-hub`  
