@@ -33,17 +33,17 @@ def get_data(data_path: str, text_column: str):
     return data
 
 def db_setup(hostname: str, port: int):
-	# connect to ES
-	db = Elasticsearch([{'host': hostname, 'port': port}])
-	if db.ping():
-		print('Connected to ES!')
-	else:
-		print('Could not connect!')
+    # connect to ES
+    db = Elasticsearch([{'host': hostname, 'port': port}])
+    if db.ping():
+        print('Connected to ES!')
+    else:
+        print('Could not connect!')
         
-	# Refer: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
-	# Mapping: Structure of the index
-	# Property/Field: name and type  
-	b = {"mappings": {
+    # Refer: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
+    # Mapping: Structure of the index
+    # Property/Field: name and type  
+    b = {"mappings": {
             "properties": {
                     "title": {
                         "type": "text"
@@ -53,13 +53,13 @@ def db_setup(hostname: str, port: int):
                         "dims": 512
                 }
             }
-		}
-	}
+        }
+    }
 
-	ret = db.indices.create(index='texts', ignore=400, body=b) # 400 caused by IndexAlreadyExistsException, 
-	print(json.dumps(ret,indent=4))
+    ret = db.indices.create(index='texts', ignore=400, body=b) # 400 caused by IndexAlreadyExistsException, 
+    print(json.dumps(ret,indent=4))
 
-	# TRY this in browser: http://localhost:9200/texts
+    # TRY this in browser: http://localhost:9200/texts
 
 def db_connect(hostname: str, port: int):
     print(f'Connecting to ES {hostname} at {str(port)}')
