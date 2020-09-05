@@ -71,12 +71,12 @@ def db_connect(hostname: str, port: int):
     return db
 
 def db_insert(database: Elasticsearch(), text_id: int, text: str, text_vector: list()):
-	b = {
+    b = {
             "title":text,
 		    "title_vector":text_vector
-		}	
-	database.index(index="texts", id=text_id, body=b)
-	# View details: http://localhost:9200/texts/_stats?pretty
+	}
+    database.index(index="texts", id=text_id, body=b)
+    # View details: http://localhost:9200/texts/_stats?pretty
     # View a document: http://localhost:9200/texts/_doc/1
 
 def encode(encoder, text: str):
