@@ -42,7 +42,7 @@ DB_PORT = 9201
 
 ### ENCODER
 
-ENCODER_PATH = '/Users/shiv/Documents/gitRepositories/text_search/encoders/universal-sentence-encoder-large_5'  
+ENCODER_PATH = '/Users/shiv/Documents/gitRepositories/text_search/encoders/universal-sentence-encoder-large_5'   
 _encoder = hub.load(ENCODER_PATH)  # Load the encoder
 
 ## Results
