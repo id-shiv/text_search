@@ -18,13 +18,32 @@
 ## Requirements
 
 - ElasticSearch database installed and running.
-- Universal Sentence Encoder (USE) model downloaded locally - <https://tfhub.dev/google/universal-sentence-encoder-large/5>
+- Universal Sentence Encoder (USE) model downloaded and stored locally from <https://tfhub.dev/google/universal-sentence-encoder-large/5>
+- IMDB Dataset downloaded and stored locally from <https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews>
 - Installs:  
 `pip3 install --upgrade pip`  
 `pip3 install elasticsearch`  
 `pip3 install pandas`  
 `pip3 install --upgrade --no-cache-dir tensorflow`  
 `pip3 install --upgrade tensorflow-hub`  
+
+## Configurations
+
+### DATA
+
+DATA_PATH = '/Users/shiv/Documents/gitRepositories/iutils/input/data/IMDB Dataset.csv'
+TEXT_COLUMN = 'review'
+NUM_OF_SAMPLES = 100
+
+### DATABASE
+
+DB_HOST_NAME = '127.0.0.1'
+DB_PORT = 9201
+
+### ENCODER
+
+ENCODER_PATH = '/Users/shiv/Documents/gitRepositories/text_search/encoders/universal-sentence-encoder-large_5'
+_encoder = hub.load(ENCODER_PATH)  # Load the encoder
 
 ## Results
 
