@@ -30,16 +30,16 @@
 
 `NOTE: Results depend on # of samples in dataset, current project could be improved with some pre-processing of text`
 
-Search Text = 'horror movies are not my type'
+Search Text = 'psychological thriller is what i like'
 
 Results:  
-{'percentage_match': 78, 'text': "Well, I like to watch bad horror B-Movies, cause I think it's interesting to see stupidity and unability of creators to shoot seriously good movie"}  
-{'percentage_match': 71, 'text': 'Oh noes one of these attack of the Japanese ghost girl movies'}  
-{'percentage_match': 69, 'text': "Average (and surprisingly tame) Fulci giallo which means it's still quite bad by normal standards, but redeemed by its solid build-up and some nice touches such as a neat time twist on the issues of visions and clairvoyance"}  
-{'percentage_match': 69, 'text': 'This IS the worst movie I have ever seen, as well as, the worst that I will probably EVER see'}  
-{'percentage_match': 68, 'text': 'Honestly - this short film sucks'}  
-{'percentage_match': 68, 'text': 'This movie made it into one of my top 10 most awful movies'}  
-{'percentage_match': 67, 'text': 'The Hills Have Eyes II is what you would expect it to be and nothing more'}  
-{'percentage_match': 67, 'text': 'Some films just simply should not be remade'}  
-{'percentage_match': 67, 'text': 'It had all the clichés of movies of this type and no substance'}  
-{'percentage_match': 66, 'text': 'I remember this film,it was the first film i had watched at the cinema the picture was dark in places i was very nervous it was back in 74/75 my Dad took me my brother & sister to Newbury cinema in Newbury Berkshire England'}  
+{'percentage_match': 73, 'text': "Well, I like to watch bad horror B-Movies, cause I think it's interesting to see stupidity and unability of creators to shoot seriously good movie"}  
+{'percentage_match': 70, 'text': '"The Cell" is an exotic masterpiece, a dizzying trip into not only the vast mind of a serial killer, but also into one of a very talented director'}  
+{'percentage_match': 67, 'text': "Average (and surprisingly tame) Fulci giallo which means it's still quite bad by normal standards, but redeemed by its solid build-up and some nice touches such as a neat time twist on the issues of visions and clairvoyance"}  
+{'percentage_match': 67, 'text': 'Taut and organically gripping, Edward Dmytryk\'s Crossfire is a distinctive suspense thriller, an unlikely "message" movie using the look and devices of the noir cycle'}  
+{'percentage_match': 65, 'text': 'This movie struck home for me'}  
+{'percentage_match': 65, 'text': 'How this film could be classified as Drama, I have no idea'}  
+{'percentage_match': 64, 'text': 'This film took me by surprise'}  
+{'percentage_match': 64, 'text': 'This film laboured along with some of the most predictable story lines and shallow characters ever seen'}  
+{'percentage_match': 63, 'text': 'Oh noes one of these attack of the Japanese ghost girl movies'}  
+{'percentage_match': 63, 'text': 'I really like Salman Kahn so I was really disappointed when I seen this movie'}  

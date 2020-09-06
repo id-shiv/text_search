@@ -13,14 +13,15 @@ from tqdm import tqdm
 ## DATA
 DATA_PATH = '/Users/shiv/Documents/gitRepositories/iutils/input/data/IMDB Dataset.csv'
 TEXT_COLUMN = 'review'
+NUM_OF_SAMPLES = 100
 
 ## DATABASE
-DB_HOST_NAME = 'localhost'
+DB_HOST_NAME = '127.0.0.1'
 DB_PORT = 9201
 
 ## ENCODER
 ENCODER_PATH = '/Users/shiv/Documents/gitRepositories/text_search/encoders/universal-sentence-encoder-large_5'
-ENCODER = hub.load(ENCODER_PATH)  # Load the encoder
+_encoder = hub.load(ENCODER_PATH)  # Load the encoder
 
 #endregion
 
@@ -79,22 +80,22 @@ def db_insert(database: Elasticsearch(), text_id: int, text: str, text_vector: l
     # View details: http://localhost:9200/texts/_stats?pretty
     # View a document: http://localhost:9200/texts/_doc/1
 
-def encode(encoder, text: str):
+def encode(text: str):
     # Encode and convert the encode tensor to list
-    embeddings = tf.make_ndarray(tf.make_tensor_proto(ENCODER([text]))).tolist()[0]
+    embeddings = tf.make_ndarray(tf.make_tensor_proto(_encoder([text]))).tolist()[0]
 
     # Return a vector of 512 dimensions as a list
     return embeddings
 
-def insert_encoded_data_to_db(database: Elasticsearch(), encoder, data: pd.DataFrame(), text_column: str):
+def insert_encoded_data_to_db(database: Elasticsearch(), data: pd.DataFrame(), text_column: str):
     # Encode and insert text ID, text and it's vector in Database
     for index, row in tqdm(data.iterrows()):
         text = row[text_column]
-        text_vector = encode(encoder, text)
+        text_vector = encode(text)
         text_id = index
         db_insert(database, text_id, text, text_vector)
 
-def search_by_vector(database: Elasticsearch(), query_vector: list()):
+def search_by_vector(database: Elasticsearch(), text_vector: list()):
     search_results = list()
 
     # Search by Vector Similarity
@@ -104,7 +105,7 @@ def search_by_vector(database: Elasticsearch(), query_vector: list()):
                 "query": {"match_all": {}},
                 "script": {
                     "source": "cosineSimilarity(params.query_vector, 'title_vector') + 1.0",
-                    "params": {"query_vector": query_vector}
+                    "params": {"query_vector": text_vector}
                 }
             }
         }
@@ -125,7 +126,7 @@ def search_by_vector(database: Elasticsearch(), query_vector: list()):
 def normalize_scores(scores: list()): 
     return [score/np.max(scores) for score in scores]
 
-def search(database: Elasticsearch, text: str, text_vector: list()):
+def search_db(database: Elasticsearch, text: str, text_vector: list()):
     search_results = list()
 
     search_results = search_by_vector(database, text_vector)
@@ -137,21 +138,30 @@ def search(database: Elasticsearch, text: str, text_vector: list()):
 
     return search_results
 
-if __name__=='__main__':
-    # Load the data (with only 100 samples)
-    data = get_data(DATA_PATH, TEXT_COLUMN)[:100]
+def search(text: str, reload_data: bool=False):
+    if reload_data:
+        # Load the data (with only 100 samples)
+        data = get_data(DATA_PATH, TEXT_COLUMN)[:NUM_OF_SAMPLES]
 
-    # Setup Database
-    db_setup(hostname=DB_HOST_NAME, port=DB_PORT)
+        # Setup Database
+        db_setup(hostname=DB_HOST_NAME, port=DB_PORT)
 
-    # Connect Database
-    db = db_connect(hostname=DB_HOST_NAME, port=DB_PORT)
+        # Connect Database
+        db = db_connect(hostname=DB_HOST_NAME, port=DB_PORT)
 
-    # Insert text and encoded text to Database
-    insert_encoded_data_to_db(db, ENCODER, data, TEXT_COLUMN)
+        # Insert text and encoded text to Database
+        insert_encoded_data_to_db(db, data, TEXT_COLUMN)
+    else:
+        # Connect Database
+        db = db_connect(hostname=DB_HOST_NAME, port=DB_PORT)       
     
     # Search new text
-    text_to_search = 'horror movies not my type'
-    results = search(db, text_to_search, encode(ENCODER, text_to_search))
+    results = search_db(db, text, encode(text))
+
+    return results
+
+
+if __name__=='__main__':
+    results = search(text='psychological thriller is what i like', reload_data=True)  
     for result in results:
-        print(result)
+        print(result)  
