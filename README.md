@@ -31,18 +31,18 @@
 
 ### DATA
 
-DATA_PATH = '/Users/shiv/Documents/gitRepositories/iutils/input/data/IMDB Dataset.csv'
-TEXT_COLUMN = 'review'
-NUM_OF_SAMPLES = 100
+DATA_PATH = '/Users/shiv/Documents/gitRepositories/iutils/input/data/IMDB Dataset.csv'  
+TEXT_COLUMN = 'review'  
+NUM_OF_SAMPLES = 100  
 
 ### DATABASE
 
-DB_HOST_NAME = '127.0.0.1'
-DB_PORT = 9201
+DB_HOST_NAME = '127.0.0.1'  
+DB_PORT = 9201  
 
 ### ENCODER
 
-ENCODER_PATH = '/Users/shiv/Documents/gitRepositories/text_search/encoders/universal-sentence-encoder-large_5'
+ENCODER_PATH = '/Users/shiv/Documents/gitRepositories/text_search/encoders/universal-sentence-encoder-large_5'  
 _encoder = hub.load(ENCODER_PATH)  # Load the encoder
 
 ## Results
